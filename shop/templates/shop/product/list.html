@@ -1,0 +1,27 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  product list
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-3">
+        <div id="list-example" class="list-group">
+          {% for cat in categories %}
+          <a class="list-group-item list-group-item-action {% if cat == category %}active{% endif %}" href="{{cat.get_absolute_url}}">{{cat.name}}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-9">
+        {% for product in products %}
+          <a href="{{product.get_absolute_url}}">
+            <img src="{{product.image.url}}" class="img-thumbnail" width="200" alt="">
+            {{product.name}}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
