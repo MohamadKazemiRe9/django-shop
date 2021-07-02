@@ -5,23 +5,32 @@
 {% endblock title %}
 
 {% block content %}
-  <div class="container">
+  <div class="container-fluid">
     <div class="row mt-4">
       <div class="col-3">
         <div id="list-example" class="list-group">
+          <a class="list-group-item list-group-item-action {% if not category %}active{% endif %}" href="{% url 'shop:product_list' %}">All Products</a>
           {% for cat in categories %}
           <a class="list-group-item list-group-item-action {% if cat == category %}active{% endif %}" href="{{cat.get_absolute_url}}">{{cat.name}}</a>
           {% endfor %}
         </div>
       </div>
       <div class="col-9">
-        {% for product in products %}
-          <a href="{{product.get_absolute_url}}">
-            <img src="{{product.image.url}}" class="img-thumbnail" width="200" alt="">
-            {{product.name}}
-            {{product.description}}
-          </a>
+        <div class="row">
+          {% for product in products %}
+          <div class="col">
+            <a href="{{product.get_absolute_url}}" class="text-decoration-none text-secondary">
+              <div class="card my-2" style="width: 18rem;height:300px;">
+                <img class="card-img-top mb-2" src="{{product.image.url}}" width="200" height="200" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{product.name}}</h5>
+                  <p class="card-text">{{product.price}}$</p>
+                </div>
+              </div>
+            </a>
+          </div>
         {% endfor %}
+        </div>
       </div>
     </div>
   </div>

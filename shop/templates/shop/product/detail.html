@@ -7,7 +7,36 @@
     
 
 {% block content %}
-    <h1>{{product.name}}</h1>
-    <hr>
+    <div class="container-fluid">
+        <h1>{{product.name}}</h1>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <img src="{{product.image.url}}" width="300" height="200" alt="">
+            </div>
+            <div class="col">
+                <div class="row">
+                    <b>Details : </b>
+                    <p>{{product.description}}</p>
+                </div>
+                <div class="row">
+                    <p><a href="{{product.get_absolute_url}}">{{product.category}}</a></p>
+                </div>
+                <div class="row">
+                    <p style="font-weight: bolder;font-size:larger;">{{product.price}} T</p>
+                </div>
+                <div class="row">
+                    <form class="form-inline">
+                        <div class="form-group mr-lg-1">
+                          <input type="number" class="form-control" id="productQuentity" min="1" aria-describedby="emailHelp" value="1">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add to Cart <i class="fas fa-shopping-cart"></i></button>
+                      </form>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </div>
 {% endblock content %}
     
