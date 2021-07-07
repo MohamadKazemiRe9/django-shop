@@ -25,13 +25,20 @@
                 <div class="row">
                     <p style="font-weight: bolder;font-size:larger;">{{product.price}} T</p>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <form class="form-inline">
                         <div class="form-group mr-lg-1">
                           <input type="number" class="form-control" id="productQuentity" min="1" aria-describedby="emailHelp" value="1">
                         </div>
                         <button type="submit" class="btn btn-primary">Add to Cart <i class="fas fa-shopping-cart"></i></button>
                       </form>
+                </div> -->
+                <div class="row">
+                    <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                        {{form}}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary text-light">Add to cart <i class="fas fa-shopping-cart"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="col"></div>

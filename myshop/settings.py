@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# SESSION_COOKIE_AGE = 2 * 24 * 60 *60
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+CART_SESSION_ID = 'cart'
 
 ROOT_URLCONF = 'myshop.urls'
 

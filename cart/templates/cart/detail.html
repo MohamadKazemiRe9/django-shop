@@ -1,0 +1,62 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Shopping Cart 
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Your shopping cart</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Remove</th>
+                <th scope="col">Unit price</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+              {% with product=item.product  %}
+                <tr>
+                    <td>
+                        <a href="{{product.get_absolute_url}}">
+                            <img class="rounded-lg shadow" src="{{product.image.url}}" height="100" width="100" alt="">
+                        </a>
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>
+                        <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                            {{item.update_quantity_form.quantity}}
+                            {{item.update_quantity_form.override}}
+                            <input class="btn btn-primary" type="submit" value="Update">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'cart:cart_remove' product.id %}" method="POST">
+                            <button type="submit" class="btn"><i class="fas fa-trash"></i></button>
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.total_price}}</td>
+                </tr>
+              {% endwith %}
+            {% endfor %}
+            <tr>
+                <td>Total</td>
+                <td colspan="4"></td>
+                <td>{{cart.get_total_price}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-primary">Continue Shopping</a>
+        <a href="#" class="btn btn-success">Checkout</a>
+    </p>
+{% endblock content %}
+    
