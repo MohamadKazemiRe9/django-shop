@@ -26,7 +26,8 @@
               <i class="fas fa-shopping-cart"></i>
               
               {% if request.session.cart %}
-              <span class="badge badge-primary">{{request.session.cart|length}}</span> <span class="sr-only">(current)</span>
+              <span class="badge badge-primary">{{cart|length}}</span> <span class="sr-only">(current)</span>
+              <span>total price : {{cart.get_total_price}}</span>
               {% endif %}
                 
             </a>
