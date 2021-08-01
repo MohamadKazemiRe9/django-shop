@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'flower',
+    'zarinpal',
+    'coupons.apps.CouponsConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media/")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# statics
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')

@@ -52,11 +52,27 @@
                 <td colspan="4"></td>
                 <td>{{cart.get_total_price}}</td>
             </tr>
+            
+            {% if cart.coupon %}
+                <tr>
+                    <td>Subtotal with {{cart.coupon.discount}}%</td>
+                    <td colspan="4"></td>
+                    <td class="text-success">{{cart.get_total_price_after_discount}}</td>
+                </tr>
+            {% endif %}
+                
         </tbody>
     </table>
+    <hr>
     <p>
         <a href="{% url 'shop:product_list' %}" class="btn btn-primary">Continue Shopping</a>
         <a href="{% url 'orders:order_create' %}" class="btn btn-success">Checkout</a>
     </p>
+    <p>Aooly Coupon Code:</p>
+    <form action="{% url 'coupons:apply' %}" method="POST">
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Apply</button>
+        {% csrf_token %}
+    </form>
 {% endblock content %}
     

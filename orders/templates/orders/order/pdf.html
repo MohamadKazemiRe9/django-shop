@@ -1,0 +1,46 @@
+<html>
+    <body>
+        <h1 class="name">Myshop</h1>
+        <p>
+            Invoice no {{order.id}} <br>
+        <span><small>{{order.created|date:"M d Y"}}</small></span>
+        </p>
+        <h3>Bill to</h3>
+        <p>
+            {{order.first_name}} {{order.last_name}} <br>
+            {{order.email}} <br>
+            {{order.address}} <br>
+            {{order.postal_code}}
+        </p>
+        <h3>Items bought</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items.all  %}
+                  <tr>
+                      <td>{{item.product.name}}</td>
+                      <td>{{item.price}}</td>
+                      <td>{{item.quantity}}</td>
+                      <td>{{item.get_cost}}</td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <span>
+            
+            {% if order.paid %}
+                Paid
+            {% else %}
+                Pending payment
+            {% endif %}
+                
+        </span>
+    </body>
+</html>
