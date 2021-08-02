@@ -1,4 +1,6 @@
 {% extends "shop/base.html" %}
+{% load i18n %}
+
 
 {% block title %}
   Shopping Cart 
@@ -74,5 +76,17 @@
         <button type="submit" class="btn btn-primary">Apply</button>
         {% csrf_token %}
     </form>
+    <hr>
+    {% if recommended_products %}
+    <h3>{% trans "People who bought this also bought" %}</h3>
+    {% for product in recommended_products %}
+    <a href="{{product.get_absolute_url}}">
+        <img src="{{product.image.url}}" alt="" width="300" height="200">
+        <span>{{product.name}}</span>
+    </a>
+    {% endfor %}
+{% endif %}  
+        
+            
 {% endblock content %}
     

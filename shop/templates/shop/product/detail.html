@@ -1,4 +1,5 @@
 {% extends "shop/base.html" %}
+{% load i18n %}
 
 
 {% block title %}
@@ -43,6 +44,22 @@
             </div>
             <div class="col"></div>
             <div class="col"></div>
+        </div>
+
+        <!-- recommended products -->
+        <div class="row mt-5">
+            
+            {% if recommended_products %}
+            <h2>{% trans "Recommende Products" %}</h2>
+                {% for product in recommended_products %}
+                  <div>
+                      <a href="{{product.get_absolute_url}}">
+                          <img src="{{product.image.url}}" alt="" width="300" height="200">
+                      </a>
+                  </div>
+                {% endfor %}
+            {% endif %}
+                
         </div>
     </div>
 {% endblock content %}
